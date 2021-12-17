@@ -23,4 +23,11 @@ router.post('/login', async function (req, res) {
   }
 })
 
+router.put('/:id', (req, res) => {
+  usersDb.updateUser({ id: req.params.id, user: req.body })
+    // .then(updatedUser => res.status(200).json(updatedUser))
+    .then(response => res.status(200).json(response))
+    .catch(err => res.status(500).json({ error: err, message: "error updating user" }));
+})
+
 module.exports = router;

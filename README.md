@@ -1,5 +1,7 @@
 # Build Week Water My Plants API
 
+To reset the database, run the following command: `npm run reset`
+
 ## Endpoints
 
 ### /users
@@ -32,6 +34,18 @@
 }
 
     Store the username in local storage and use it to pre-populate the username field on the login page
+```
+
+### /users/:id
+
+    PUT | updates a user, returns the updated user
+
+```
+{
+	"id": 201,
+	"username": "Leroy Jenkins",
+	"phoneNumber": "123-555-4567"
+}
 ```
 
 ### /login

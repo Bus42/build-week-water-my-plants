@@ -2,6 +2,7 @@ require('dotenv').config();
 const db = require('../config/');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const colors = require('colors');
 
 async function getUsers() {
     const users = await db('users').select('id', 'username', 'phoneNumber');
@@ -45,10 +46,27 @@ async function loginUser(user) {
     return null;
 }
 
+async function updateUser({ id, user }) {
+    const hash = bcrypt.hashSync(user.password, 8);
+    const hashedUser = {
+        username: user.username,
+        password: hash,
+        phoneNumber: user.phoneNumber
+    }
+    const success = await db('users').where({ id }).update(hashedUser);
+    if (success) {
+        console.log(success);
+        return await getUserById(id);
+    } else {
+        console.log('error updating user');
+    }
+}
+
 module.exports = {
     getUsers,
     addUser,
     getUserBy,
     getUserById,
-    loginUser
+    loginUser,
+    updateUser
 };
