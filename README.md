@@ -48,6 +48,16 @@ To reset the database, run the following command: `npm run reset`
 }
 ```
 
+    DELETE | deletes a user, returns the deleted user
+```
+{
+	"message": "user deleted:",
+	"user": {
+		"id": "201"
+	}
+}
+```
+
 ### /login
 
     POST | logs in a user, returns a JWT

@@ -55,10 +55,20 @@ async function updateUser({ id, user }) {
     }
     const success = await db('users').where({ id }).update(hashedUser);
     if (success) {
-        console.log(success);
+        console.log(colors.bgYellow.black.bold(`User ${id} updated`));
         return await getUserById(id);
     } else {
-        console.log('error updating user');
+        console.log(colors.bgRed.white.bold('error updating user'));
+    }
+}
+
+async function deleteUser(id) {
+    const success = await db('users').where({ id }).del();
+    if (success) {
+        console.log(colors.bgYellow.black.bold(`User ${id} deleted`));
+        return { id };
+    } else {
+        console.log(colors.bgRed.white.bold('error deleting user'));
     }
 }
 
@@ -68,5 +78,6 @@ module.exports = {
     getUserBy,
     getUserById,
     loginUser,
-    updateUser
+    updateUser,
+    deleteUser
 };
