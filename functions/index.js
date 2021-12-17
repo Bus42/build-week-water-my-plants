@@ -2,16 +2,14 @@ const functions = require("firebase-functions");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require("cors");
 
 const indexRouter = require("../routes/index");
 const usersRouter = require("../routes/users");
 const plantsRouter = require("../routes/plants");
-const cors = require("cors");
 
 const app = express();
-
-require("dotenv").config();
-const port = 3000; // setting port with .env file breaks firebase
+const port = 5280; // setting port with .env file breaks firebase
 
 app.use(logger("dev"));
 app.use(express.json());

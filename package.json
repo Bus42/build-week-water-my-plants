@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js",
-    "server": "nodemon app.js"
+    "start": "node ./functions/index.js",
+    "server": "nodemon ./functions/index.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
