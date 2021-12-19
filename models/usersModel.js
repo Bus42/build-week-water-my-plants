@@ -34,11 +34,21 @@ async function getUserById(id) {
     return returnedUser;
 }
 
-async function getUserPlants(id) {
+async function getUserPlants(user_id) {
     const userPlants = await db('users_plants')
         .join('plants', 'users_plants.plant_id', 'plants.id')
-        .where({ user_id: id });
+        .where({ user_id });
     return userPlants
+}
+
+async function addUserPlant({ user_id, plant_id }) {
+    console.log(colors.bgGreen.black.bold(`Adding plant ${plant_id} to user ${user_id}`));
+    const [id] = await db('users_plants').insert({ user_id, plant_id });
+    console.log(id);
+    const userPlants = await db('users_plants')
+        .join('plants', 'users_plants.plant_id', 'plants.id')
+        .where({ user_id });
+    return userPlants;
 }
 
 async function loginUser(user) {
@@ -87,5 +97,6 @@ module.exports = {
     loginUser,
     updateUser,
     deleteUser,
-    getUserPlants
+    getUserPlants,
+    addUserPlant
 };

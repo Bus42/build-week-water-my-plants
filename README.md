@@ -1,6 +1,6 @@
 # Build Week Water My Plants API
 
-API hosted on [Heroku](https://fast-sands-01851.herokuapp.com/)  
+API hosted on [Heroku](https://fast-sands-01851.herokuapp.com/)
 
 If running locally, reset the database by run the following command: `npm run reset`
 
@@ -16,6 +16,8 @@ If running locally, reset the database by run the following command: `npm run re
 - Edit plant entry
 - Remove plant entry
 - Get list of a user's plants
+
+Authentication is handled via [JWT](https://jwt.io/). Destroy JWT on logout.
 
 ## Endpoints
 
@@ -99,7 +101,28 @@ If running locally, reset the database by run the following command: `npm run re
 }]
 ```
 
-    POST | creates a new plant for a user, returns the newly created plant
+    POST | adds plant to list of user's plants, returns list of user's plants
+
+```
+request body: {
+	"plant_id": "42"
+}
+```
+
+```
+response: [
+	{
+		"id": 42,
+		"user_id": 42,
+		"plant_id": 42,
+		"nickname": "Showy Evening Primrose",
+		"species": "Onagraceae",
+		"h2ofrequency": "22",
+		"image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC3SURBVCjPvdCxDYMwEAVQSxQ0CImKKldE19FRITeu3LihiGQGYYKbIBtkgtuACdiACW4NcgEnpKJE11j6T98+m9Wcj7kERIqsM6ymHwJ7dvQJmhvSryFK5N1rLFtc4gT8Bx4JOO42gC+Y6wM8pJ/D6Ec3dnOrAJ9ga64O0EtIDS3fBS0sGi/FklMCQXwCjQIoa1vZYsqnrEnAi0sAGWQ/5Zx9r/CkT+NW18QBWMu39TIydN1Xn88bUK7xEQPM95QAAAAASUVORK5CYII="
+	},
+	...
+]
+```
 
 ### /login
 

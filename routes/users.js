@@ -33,6 +33,12 @@ router.get("/:id/plants", (req, res) => {
     .catch(err => res.status(500).json({ error: err, message: "error getting plants" }));
 })
 
+router.post("/:id/plants", (req, res) => {
+  const payload = { user_id: req.params.id, plant_id: req.body.plant_id };
+  usersDb.addUserPlant(payload).then(plants => res.status(200).json(plants))
+    .catch(err => res.status(500).json({ error: err, message: "error adding plant" }));
+});
+
 router.put('/:id', (req, res) => {
   usersDb.updateUser({ id: req.params.id, user: req.body })
     .then(updatedUser => res.status(200).json(updatedUser))
