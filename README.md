@@ -1,6 +1,7 @@
 # Build Week Water My Plants API
 
-To reset the database, run the following command: `npm run reset`
+API hosted on [Heroku](https://fast-sands-01851.herokuapp.com/)
+If running locally, reset the database by run the following command: `npm run reset`
 
 ## Endpoints
 
@@ -49,6 +50,7 @@ To reset the database, run the following command: `npm run reset`
 ```
 
     DELETE | deletes a user, returns the deleted user
+
 ```
 {
 	"message": "user deleted:",

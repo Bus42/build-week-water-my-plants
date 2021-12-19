@@ -28,11 +28,9 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'sqlite3',
     connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password'
+      filename: './dev.sqlite3'
     },
     pool: {
       min: 2,
@@ -45,3 +43,4 @@ module.exports = {
   }
 
 };
+// arbitrary change to allow push to heroku
