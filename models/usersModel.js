@@ -51,6 +51,20 @@ async function addUserPlant({ user_id, plant_id }) {
     return userPlants;
 }
 
+async function deleteUserPlant({ user_id, plant_id }) {
+    const success = await db('users_plants').where({ user_id, plant_id }).del();
+    if (success) {
+        console.log(colors.bgYellow.black.bold(`User ${user_id} deleted plant ${plant_id}`));
+        // return list of user plants
+        const userPlants = await db('users_plants')
+            .join('plants', 'users_plants.plant_id', 'plants.id')
+            .where({ user_id });
+        return userPlants;
+    } else {
+        console.log(colors.bgRed.white.bold('error deleting user plant'));
+    }
+}
+
 async function loginUser(user) {
     const username = user.username;
     const users = await db('users').where({ username });
@@ -98,5 +112,6 @@ module.exports = {
     updateUser,
     deleteUser,
     getUserPlants,
-    addUserPlant
+    addUserPlant,
+    deleteUserPlant
 };

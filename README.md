@@ -17,6 +17,7 @@ If running locally, reset the database by run the following command: `npm run re
 - Remove plant entry
 - Get list of a user's plants
 - Add a plant to a user's list
+- Remove a plant from a user's list
 
 Authentication is handled via [JWT](https://jwt.io/). Destroy JWT on logout.
 
@@ -102,7 +103,7 @@ Authentication is handled via [JWT](https://jwt.io/). Destroy JWT on logout.
 }]
 ```
 
-    POST | adds plant to list of user's plants, returns list of user's plants
+    POST | adds plant to list of user's plants, returning list of user's plants
 
 ```
 request body: {
@@ -123,6 +124,12 @@ response: [
 	},
 	...
 ]
+```
+ 	DELETE | removes plant from list of user's plants, returning a list of user's plants
+```
+request body: {
+	"plant_id": "42"
+}
 ```
 
 ### /login
