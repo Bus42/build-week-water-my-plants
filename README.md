@@ -51,9 +51,8 @@ Authentication is handled via [JWT](https://jwt.io/). Destroy JWT on logout.
 "username": "leeroy jenkins",
 "phoneNumber": "555-123-4567"
 }
-
-    Store the username in local storage and use it to pre-populate the username field on the login page
-```
+``` 
+Store the username in local storage and use it to pre-populate the username field on the login page
 
 ### /users/:id
 
@@ -138,9 +137,9 @@ request body: {
 
 ```
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxlZXJveSBqZW5raW5zIiwiaWF0IjoxNjM5NjI4ODk2LCJleHAiOjE2Mzk2MzI0OTZ9.rRHCA0pQMFIBs-5jLbDmEEQgjBAxSUHSYoSM64-xRI0"
-```
+```  
 
-    Store the JWT in local storage and use it to authenticate all future requests. Since JWTs are not cancelable, they should be deleted when the user logs out.
+Store the JWT in local storage and use it to authenticate all future requests. JWT expires 1 hour after being issued.
 
 ### /plants
 
