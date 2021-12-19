@@ -34,6 +34,37 @@ async function getUserById(id) {
     return returnedUser;
 }
 
+async function getUserPlants(user_id) {
+    const userPlants = await db('users_plants')
+        .join('plants', 'users_plants.plant_id', 'plants.id')
+        .where({ user_id });
+    return userPlants
+}
+
+async function addUserPlant({ user_id, plant_id }) {
+    console.log(colors.bgGreen.black.bold(`Adding plant ${plant_id} to user ${user_id}`));
+    const [id] = await db('users_plants').insert({ user_id, plant_id });
+    console.log(id);
+    const userPlants = await db('users_plants')
+        .join('plants', 'users_plants.plant_id', 'plants.id')
+        .where({ user_id });
+    return userPlants;
+}
+
+async function deleteUserPlant({ user_id, plant_id }) {
+    const success = await db('users_plants').where({ user_id, plant_id }).del();
+    if (success) {
+        console.log(colors.bgYellow.black.bold(`User ${user_id} deleted plant ${plant_id}`));
+        // return list of user plants
+        const userPlants = await db('users_plants')
+            .join('plants', 'users_plants.plant_id', 'plants.id')
+            .where({ user_id });
+        return userPlants;
+    } else {
+        console.log(colors.bgRed.white.bold('error deleting user plant'));
+    }
+}
+
 async function loginUser(user) {
     const username = user.username;
     const users = await db('users').where({ username });
@@ -79,5 +110,8 @@ module.exports = {
     getUserById,
     loginUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserPlants,
+    addUserPlant,
+    deleteUserPlant
 };
