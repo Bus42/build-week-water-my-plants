@@ -1,6 +1,7 @@
 # Build Week Water My Plants API
 
-API hosted on [Heroku](https://fast-sands-01851.herokuapp.com/)
+API hosted on [Heroku](https://fast-sands-01851.herokuapp.com/)  
+
 If running locally, reset the database by run the following command: `npm run reset`
 
 ## User can:
