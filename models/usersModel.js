@@ -34,6 +34,13 @@ async function getUserById(id) {
     return returnedUser;
 }
 
+async function getUserPlants(id) {
+    const userPlants = await db('users_plants')
+        .join('plants', 'users_plants.plant_id', 'plants.id')
+        .where({ user_id: id });
+    return userPlants
+}
+
 async function loginUser(user) {
     const username = user.username;
     const users = await db('users').where({ username });
@@ -79,5 +86,6 @@ module.exports = {
     getUserById,
     loginUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getUserPlants
 };
