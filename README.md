@@ -16,6 +16,7 @@ If running locally, reset the database by run the following command: `npm run re
 - Edit plant entry
 - Remove plant entry
 - Get list of a user's plants
+- Add a plant to a user's list
 
 Authentication is handled via [JWT](https://jwt.io/). Destroy JWT on logout.
 
