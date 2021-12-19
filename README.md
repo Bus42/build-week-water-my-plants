@@ -3,6 +3,19 @@
 API hosted on [Heroku](https://fast-sands-01851.herokuapp.com/)
 If running locally, reset the database by run the following command: `npm run reset`
 
+## User can:
+
+- Register
+- Login
+- Edit user profile
+- Delete profile
+- Get list of users
+- Get list of plants
+- Add plants to db
+- Edit plant entry
+- Remove plant entry
+- Get list of a user's plants
+
 ## Endpoints
 
 ### /users
@@ -59,6 +72,33 @@ If running locally, reset the database by run the following command: `npm run re
 	}
 }
 ```
+
+### /users/:id/plants
+
+    GET | returns all plants for a user
+
+```
+[{
+	"id": 78,
+	"user_id": 116,
+	"plant_id": 78,
+	"nickname": "Edible Thistle",
+	"species": "Asteraceae",
+	"h2ofrequency": "5",
+	"image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJlSURBVDjLpZNrSJNRGMdlr7qat+zKaoYhjqYphRCWCtKFoCj60CeRpDB0djHUSMOZm0JhGEmlNhczXXunDgy7TNcVcsjGpk6dNsiJyyjWNg3ZnJfef69vMBBkFn34wXMu/995DocTBCDof1h1cvBJnM5RTsBVyYLzBgvfigjopbGDfyUwK+Nfu2RsTNcTDO5aAk4RC1/KQ2BqjetbU+AiOZip/xNyLndQSeCHmMBUIQFzTjDWFDiu0O0qzmJKU4OvPSmYuETAXhKM8WshsOYR0NZlRAUUtOXt+Dk99hYufSu+6x7D8fEAnLozmLEq0V3M8ww1F4QGFEhz+Aa3QQmHsQPeQZJGxdRuEwnp+SRjwCs0FpwIf3guwfayKBE+owxzI50M3oGn0JbuQW323vE7uac2rSpoFB6Pll/M0FjEofDZe2Go2ocu0VGG5dpjUWOEXpPlp72X5h/irhBIcrNYNunp5s+31gFTWmCsAfiQDWiOgXq2H1Q7H1TPSVCfmjBaHY4HFzJfNOQd5vgFZGHmo5n7bEBfQlPMBNGVCqgTQZGxWGjhwivbCKorHb/UybDf5UFekE76Bf3lu5ccz0uxpIgBOvgMlGoXPeZhvnkbHY7GbEMYnHVseKQb4OquQF+JYMEvMIsElFsroTfQL/TqCBYVOzHfsh0++RZ4mqIxJ98Kj2wzc7qtJhLTb6pguJ5A+QXDLZfLTGXxi45762G7TUs6BKtirWZjWByG/opkH52pWvEKEyphRK8oLan9aurkgCSGslRHYVTCwQjNkDgSpptcqrMwafZd2cGUyTZhRMDf+C/8Blefvm4GxFC9AAAAAElFTkSuQmCC"
+},
+{
+	"id": 183,
+	"user_id": 116,
+	"plant_id": 183,
+	"nickname": "American Pistachio",
+	"species": "Anacardiaceae",
+	"h2ofrequency": "4",
+	"image": null
+}]
+```
+
+    POST | creates a new plant for a user, returns the newly created plant
 
 ### /login
 
