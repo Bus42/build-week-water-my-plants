@@ -44,7 +44,6 @@ async function getUserPlants(user_id) {
 async function addUserPlant({ user_id, plant_id }) {
     console.log(colors.bgGreen.black.bold(`Adding plant ${plant_id} to user ${user_id}`));
     const [id] = await db('users_plants').insert({ user_id, plant_id });
-    console.log(id);
     const userPlants = await db('users_plants')
         .join('plants', 'users_plants.plant_id', 'plants.id')
         .where({ user_id });
@@ -65,16 +64,9 @@ async function deleteUserPlant({ user_id, plant_id }) {
     }
 }
 
-async function loginUser(user) {
-    const username = user.username;
-    const users = await db('users').where({ username });
-    const returnedUser = users[0];
-    const isValid = bcrypt.compareSync(user.password, returnedUser.password);
-    if (isValid) {
-        const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        return token;
-    }
-    return null;
+async function loginUser({ username }) {
+    const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    return { username, token };
 }
 
 async function updateUser({ id, user }) {
